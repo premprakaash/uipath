@@ -1,0 +1,465 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Sequence" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="2303,3026" sap2010:WorkflowViewState.IdRef="Sequence_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="22">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="22">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Sequence" sap:VirtualizedContainerService.HintSize="2313,2861" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="userName" />
+      <Variable x:TypeArguments="x:Int32" Name="userAmount" />
+      <Variable x:TypeArguments="x:String" Name="userPlan" />
+      <Variable x:TypeArguments="x:Int32" Name="caseAmount" />
+      <Variable x:TypeArguments="x:Double" Name="userPercent">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:Double" Value="0.15" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:Double" Name="userGst" />
+      <Variable x:TypeArguments="x:Double" Name="final" />
+      <Variable x:TypeArguments="x:String" Name="ProjectName">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" xml:space="preserve">Web Hosting compere system </Literal>
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="companyName" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="2271,92" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="False" Label="Enter your name " Title="[ProjectName]">
+      <ui:InputDialog.Result>
+        <OutArgument x:TypeArguments="x:String">[userName]</OutArgument>
+      </ui:InputDialog.Result>
+    </ui:InputDialog>
+    <ui:InputDialog DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="2271,92" sap2010:WorkflowViewState.IdRef="InputDialog_5" IsPassword="False" Label="Select the Hosting Company" Options="[{&quot;Hostgator&quot;,&quot;Siteground&quot;,&quot;Hostinger&quot;,&quot;Bluehost&quot;,&quot;Dreamhost&quot;}]" Title="[ProjectName]">
+      <ui:InputDialog.Result>
+        <OutArgument x:TypeArguments="x:String">[companyName]</OutArgument>
+      </ui:InputDialog.Result>
+    </ui:InputDialog>
+    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[companyName]" sap:VirtualizedContainerService.HintSize="2271,2305" sap2010:WorkflowViewState.IdRef="Switch`1_2">
+      <Switch.Default>
+        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_12" Text="[&quot;d&quot;]" />
+      </Switch.Default>
+      <Sequence x:Key="Hostgator" sap:VirtualizedContainerService.HintSize="2231,2026" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:String" Name="domainName" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:InputDialog DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="2189,92" sap2010:WorkflowViewState.IdRef="InputDialog_23" IsPassword="False" Label="Select Number of domain" Options="[{&quot;Single&quot;,&quot;Multiple&quot;}]" Title="[ProjectName]">
+          <ui:InputDialog.Result>
+            <OutArgument x:TypeArguments="x:String">[domainName]</OutArgument>
+          </ui:InputDialog.Result>
+        </ui:InputDialog>
+        <If Condition="[domainName=&quot;Single&quot;]" sap:VirtualizedContainerService.HintSize="2189,1802" sap2010:WorkflowViewState.IdRef="If_6">
+          <If.Then>
+            <Sequence sap:VirtualizedContainerService.HintSize="1305,1652" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="noMonth" />
+                <Variable x:TypeArguments="x:String" Name="noYear" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="1263,59" sap2010:WorkflowViewState.IdRef="MessageBox_19" Text="[domainName]" />
+              <ui:InputDialog DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="1263,92" sap2010:WorkflowViewState.IdRef="InputDialog_3" IsPassword="False" Label="select the plan" Options="[{&quot;Monthly&quot;,&quot;Yearly&quot;}]" Title="[ProjectName]">
+                <ui:InputDialog.Result>
+                  <OutArgument x:TypeArguments="x:String">[userPlan]</OutArgument>
+                </ui:InputDialog.Result>
+              </ui:InputDialog>
+              <If Condition="[userPlan=&quot;Monthly&quot;]" sap:VirtualizedContainerService.HintSize="1263,1329" sap2010:WorkflowViewState.IdRef="If_1">
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="609,1179" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:InputDialog DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="567,92" sap2010:WorkflowViewState.IdRef="InputDialog_2" IsPassword="False" Label="Monthly plan" Options="[{&quot;1 Month&quot;,&quot;3 Month&quot;,&quot;6 Month&quot; }]" Title="Web Hosting compere system ">
+                      <ui:InputDialog.Result>
+                        <OutArgument x:TypeArguments="x:String">[noMonth]</OutArgument>
+                      </ui:InputDialog.Result>
+                    </ui:InputDialog>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="567,59" sap2010:WorkflowViewState.IdRef="MessageBox_21" Text="[noMonth]" />
+                    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[noMonth]" sap:VirtualizedContainerService.HintSize="567,856" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                      <Switch.Default>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_28" Text="[&quot;default&quot;]" />
+                      </Switch.Default>
+                      <Sequence x:Key="1 Month" sap:VirtualizedContainerService.HintSize="527,623" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="a">
+                            <Variable.Default>
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Environment.NewLine" />
+                            </Variable.Default>
+                          </Variable>
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="485,59" sap2010:WorkflowViewState.IdRef="MessageBox_25" Text="[noMonth]" />
+                        <ui:InputDialog Result="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="485,92" sap2010:WorkflowViewState.IdRef="InputDialog_27" IsPassword="False" Label="Price Plan" Options="[{&quot;299/Month&quot;,&quot;499/Month&quot;}]" Title="[ProjectName]" />
+                        <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="485,300" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="https://www.hostgator.in/web-hosting/linux-shared-hosting?utm_expid=.G9MCT_CDSau2Y77oHsXcBQ.0&amp;utm_referrer=https%3A%2F%2Fwww.hostgator.in%2F%3Fa_aid%3D815192071%26chan%3Dga_se_brnd_generic%26ad%3Dga_se_brnd_generic%26cmp%3DBrand_Exact_and_BMM_Generic_%28S%29%26kw%3Dhostgator%26mt%3De%26adg%3DHostgator_Exact%26adid%3D431361622788%26coupon%3DHGDEAL%26clickid%3Dsemclickid%26irpid%3Dhgi_gadsea%26gclid%3DCjwKCAjw5Kv7BRBSEiwAXGDElSYiJ5Kk4bAgScVw7Ox4FOGVE6ZMAimJTSnFC95-8w100cXZ4KisqxoCBlMQAvD_BwE">
+                          <ui:OpenBrowser.Body>
+                            <ActivityAction x:TypeArguments="x:Object">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,198" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'IMG'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                  <ui:Click.CursorPosition>
+                                    <ui:CursorPosition Position="Center">
+                                      <ui:CursorPosition.OffsetX>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetX>
+                                      <ui:CursorPosition.OffsetY>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetY>
+                                    </ui:CursorPosition>
+                                  </ui:Click.CursorPosition>
+                                  <ui:Click.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8aacba96-05ab-479b-8e81-5229070fd19c" InformativeScreenshot="61a8db8f7deb25a7e01f3f187cf9477f" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;ul&amp;gt;li&amp;gt;div&amp;gt;img' src='/ui/hostgator/themes/MinimalGreen/images/indiaflag.png' tag='IMG' /&gt;">
+                                      <ui:Target.TimeoutMS>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:Target.TimeoutMS>
+                                      <ui:Target.WaitForReady>
+                                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                                      </ui:Target.WaitForReady>
+                                    </ui:Target>
+                                  </ui:Click.Target>
+                                </ui:Click>
+                              </Sequence>
+                            </ActivityAction>
+                          </ui:OpenBrowser.Body>
+                        </ui:OpenBrowser>
+                      </Sequence>
+                      <Sequence x:Key="2 Month" sap:VirtualizedContainerService.HintSize="376,283" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_30" Text="[noMonth]" />
+                        <ui:InputDialog Result="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="InputDialog_29" IsPassword="False" Label="Price Plan" Options="[{&quot;299/Month&quot;,&quot;499/Month&quot;}]" Title="[ProjectName]" />
+                      </Sequence>
+                      <Sequence x:Key="3 Month" sap:VirtualizedContainerService.HintSize="376,283" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_31" Text="[noMonth]" />
+                        <ui:InputDialog Result="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="InputDialog_30" IsPassword="False" Label="Price Plan" Options="[{&quot;299/Month&quot;,&quot;499/Month&quot;}]" Title="[ProjectName]" />
+                      </Sequence>
+                    </Switch>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap:VirtualizedContainerService.HintSize="609,1080" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:InputDialog DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="567,92" sap2010:WorkflowViewState.IdRef="InputDialog_6" IsPassword="False" Label="Yearly plan" Options="[{&quot;1 Year&quot;,&quot;2 Year&quot;,&quot;3 Year&quot;}]" Title="Web Hosting compere system ">
+                      <ui:InputDialog.Result>
+                        <OutArgument x:TypeArguments="x:String">[noYear]</OutArgument>
+                      </ui:InputDialog.Result>
+                    </ui:InputDialog>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="567,59" sap2010:WorkflowViewState.IdRef="MessageBox_22" Text="[noYear]" />
+                    <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[noYear]" sap:VirtualizedContainerService.HintSize="567,757" sap2010:WorkflowViewState.IdRef="Switch`1_4">
+                      <Switch.Default>
+                        <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_35" Text="[&quot;default&quot;]" />
+                      </Switch.Default>
+                      <Sequence x:Key="1 Year" sap:VirtualizedContainerService.HintSize="527,524" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:InputDialog Result="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="485,92" sap2010:WorkflowViewState.IdRef="InputDialog_31" IsPassword="False" Label="Price Plan" Options="[{&quot;239/month&quot;,&quot;399/month&quot;}]" Title="[ProjectName]" />
+                        <ui:OpenBrowser CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="485,300" sap2010:WorkflowViewState.IdRef="OpenBrowser_2" Url="https://www.hostgator.in/web-hosting/linux-shared-hosting?utm_expid=.G9MCT_CDSau2Y77oHsXcBQ.0&amp;utm_referrer=https%3A%2F%2Fwww.hostgator.in%2F%3Fa_aid%3D815192071%26chan%3Dga_se_brnd_generic%26ad%3Dga_se_brnd_generic%26cmp%3DBrand_Exact_and_BMM_Generic_%28S%29%26kw%3Dhostgator%26mt%3De%26adg%3DHostgator_Exact%26adid%3D431361622788%26coupon%3DHGDEAL%26clickid%3Dsemclickid%26irpid%3Dhgi_gadsea%26gclid%3DCjwKCAjw5Kv7BRBSEiwAXGDElSYiJ5Kk4bAgScVw7Ox4FOGVE6ZMAimJTSnFC95-8w100cXZ4KisqxoCBlMQAvD_BwE">
+                          <ui:OpenBrowser.Body>
+                            <ActivityAction x:TypeArguments="x:Object">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                              </ActivityAction.Argument>
+                              <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,198" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'IMG'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+                                  <ui:Click.CursorPosition>
+                                    <ui:CursorPosition Position="Center">
+                                      <ui:CursorPosition.OffsetX>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetX>
+                                      <ui:CursorPosition.OffsetY>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:CursorPosition.OffsetY>
+                                    </ui:CursorPosition>
+                                  </ui:Click.CursorPosition>
+                                  <ui:Click.Target>
+                                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="8aacba96-05ab-479b-8e81-5229070fd19c" InformativeScreenshot="61a8db8f7deb25a7e01f3f187cf9477f" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;ul&amp;gt;li&amp;gt;div&amp;gt;img' src='/ui/hostgator/themes/MinimalGreen/images/indiaflag.png' tag='IMG' /&gt;">
+                                      <ui:Target.TimeoutMS>
+                                        <InArgument x:TypeArguments="x:Int32" />
+                                      </ui:Target.TimeoutMS>
+                                      <ui:Target.WaitForReady>
+                                        <InArgument x:TypeArguments="ui:WaitForReady" />
+                                      </ui:Target.WaitForReady>
+                                    </ui:Target>
+                                  </ui:Click.Target>
+                                </ui:Click>
+                              </Sequence>
+                            </ActivityAction>
+                          </ui:OpenBrowser.Body>
+                        </ui:OpenBrowser>
+                      </Sequence>
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" x:Key="2 Year" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_33" Text="[noYear]" />
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" x:Key="3 Year" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_34" Text="[noYear]" />
+                    </Switch>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="multi domain" sap:VirtualizedContainerService.HintSize="839,756" sap2010:WorkflowViewState.IdRef="Sequence_10">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="797,59" sap2010:WorkflowViewState.IdRef="MessageBox_20" Text="[domainName]" />
+              <ui:InputDialog DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="797,92" sap2010:WorkflowViewState.IdRef="InputDialog_24" IsPassword="False" Label="Select the Plan" Options="[{&quot;Monthly&quot;,&quot;Yearly&quot;}]" Title="[ProjectName]">
+                <ui:InputDialog.Result>
+                  <OutArgument x:TypeArguments="x:String">[userPlan]</OutArgument>
+                </ui:InputDialog.Result>
+              </ui:InputDialog>
+              <If Condition="[userPlan=&quot;Monthly&quot;]" sap:VirtualizedContainerService.HintSize="797,433" sap2010:WorkflowViewState.IdRef="If_7">
+                <If.Then>
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,283" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_23" Text="[userPlan]" />
+                    <ui:InputDialog Options="{x:Null}" Result="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="InputDialog_25" IsPassword="False" Label="Monthly Plan" Title="[ProjectName]" />
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence sap:VirtualizedContainerService.HintSize="376,283" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="MessageBox_24" Text="[userPlan]" />
+                    <ui:InputDialog Options="{x:Null}" Result="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="InputDialog_26" IsPassword="False" Label="Yearly Plan" Title="[ProjectName]" />
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </If.Else>
+        </If>
+      </Sequence>
+      <Sequence x:Key="Hostinger" sap:VirtualizedContainerService.HintSize="755,464" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:InputDialog DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="713,92" sap2010:WorkflowViewState.IdRef="InputDialog_11" IsPassword="False" Label="select the plan" Options="[{&quot;Monthly&quot;,&quot;Yearly&quot;}]" Title="[ProjectName]">
+          <ui:InputDialog.Result>
+            <OutArgument x:TypeArguments="x:String">[userPlan]</OutArgument>
+          </ui:InputDialog.Result>
+        </ui:InputDialog>
+        <If Condition="[userPlan=&quot;Monthly&quot;]" sap:VirtualizedContainerService.HintSize="713,240" sap2010:WorkflowViewState.IdRef="If_2">
+          <If.Then>
+            <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="InputDialog_12" IsPassword="False" Label="Price range in Monthly plan" Title="Web Hosting compere system ">
+              <ui:InputDialog.Result>
+                <OutArgument x:TypeArguments="x:Int32">[userAmount]</OutArgument>
+              </ui:InputDialog.Result>
+            </ui:InputDialog>
+          </If.Then>
+          <If.Else>
+            <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="InputDialog_13" IsPassword="False" Label="Price range in Yearly plan" Title="Web Hosting compere system ">
+              <ui:InputDialog.Result>
+                <OutArgument x:TypeArguments="x:Int32">[userAmount]</OutArgument>
+              </ui:InputDialog.Result>
+            </ui:InputDialog>
+          </If.Else>
+        </If>
+      </Sequence>
+      <Sequence x:Key="Siteground" sap:VirtualizedContainerService.HintSize="755,464" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:InputDialog DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="713,92" sap2010:WorkflowViewState.IdRef="InputDialog_14" IsPassword="False" Label="select the plan" Options="[{&quot;Monthly&quot;,&quot;Yearly&quot;}]" Title="[ProjectName]">
+          <ui:InputDialog.Result>
+            <OutArgument x:TypeArguments="x:String">[userPlan]</OutArgument>
+          </ui:InputDialog.Result>
+        </ui:InputDialog>
+        <If Condition="[userPlan=&quot;Monthly&quot;]" sap:VirtualizedContainerService.HintSize="713,240" sap2010:WorkflowViewState.IdRef="If_3">
+          <If.Then>
+            <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="InputDialog_15" IsPassword="False" Label="Price range in Monthly plan" Title="Web Hosting compere system ">
+              <ui:InputDialog.Result>
+                <OutArgument x:TypeArguments="x:Int32">[userAmount]</OutArgument>
+              </ui:InputDialog.Result>
+            </ui:InputDialog>
+          </If.Then>
+          <If.Else>
+            <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="InputDialog_16" IsPassword="False" Label="Price range in Yearly plan" Title="Web Hosting compere system ">
+              <ui:InputDialog.Result>
+                <OutArgument x:TypeArguments="x:Int32">[userAmount]</OutArgument>
+              </ui:InputDialog.Result>
+            </ui:InputDialog>
+          </If.Else>
+        </If>
+      </Sequence>
+      <Sequence x:Key="Bluehost" sap:VirtualizedContainerService.HintSize="755,464" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:InputDialog DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="713,92" sap2010:WorkflowViewState.IdRef="InputDialog_17" IsPassword="False" Label="select the plan" Options="[{&quot;Monthly&quot;,&quot;Yearly&quot;}]" Title="[ProjectName]">
+          <ui:InputDialog.Result>
+            <OutArgument x:TypeArguments="x:String">[userPlan]</OutArgument>
+          </ui:InputDialog.Result>
+        </ui:InputDialog>
+        <If Condition="[userPlan=&quot;Monthly&quot;]" sap:VirtualizedContainerService.HintSize="713,240" sap2010:WorkflowViewState.IdRef="If_4">
+          <If.Then>
+            <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="InputDialog_18" IsPassword="False" Label="Price range in Monthly plan" Title="Web Hosting compere system ">
+              <ui:InputDialog.Result>
+                <OutArgument x:TypeArguments="x:Int32">[userAmount]</OutArgument>
+              </ui:InputDialog.Result>
+            </ui:InputDialog>
+          </If.Then>
+          <If.Else>
+            <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="InputDialog_19" IsPassword="False" Label="Price range in Yearly plan" Title="Web Hosting compere system ">
+              <ui:InputDialog.Result>
+                <OutArgument x:TypeArguments="x:Int32">[userAmount]</OutArgument>
+              </ui:InputDialog.Result>
+            </ui:InputDialog>
+          </If.Else>
+        </If>
+      </Sequence>
+      <Sequence x:Key="Dreamhost" sap:VirtualizedContainerService.HintSize="755,464" sap2010:WorkflowViewState.IdRef="Sequence_6">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:InputDialog DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="713,92" sap2010:WorkflowViewState.IdRef="InputDialog_20" IsPassword="False" Label="select the plan" Options="[{&quot;Monthly&quot;,&quot;Yearly&quot;}]" Title="[ProjectName]">
+          <ui:InputDialog.Result>
+            <OutArgument x:TypeArguments="x:String">[userPlan]</OutArgument>
+          </ui:InputDialog.Result>
+        </ui:InputDialog>
+        <If Condition="[userPlan=&quot;Monthly&quot;]" sap:VirtualizedContainerService.HintSize="713,240" sap2010:WorkflowViewState.IdRef="If_5">
+          <If.Then>
+            <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="InputDialog_21" IsPassword="False" Label="Price range in Monthly plan" Title="Web Hosting compere system ">
+              <ui:InputDialog.Result>
+                <OutArgument x:TypeArguments="x:Int32">[userAmount]</OutArgument>
+              </ui:InputDialog.Result>
+            </ui:InputDialog>
+          </If.Then>
+          <If.Else>
+            <ui:InputDialog Options="{x:Null}" DisplayName="Input Dialog" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="InputDialog_22" IsPassword="False" Label="Price range in Yearly plan" Title="Web Hosting compere system ">
+              <ui:InputDialog.Result>
+                <OutArgument x:TypeArguments="x:Int32">[userAmount]</OutArgument>
+              </ui:InputDialog.Result>
+            </ui:InputDialog>
+          </If.Else>
+        </If>
+      </Sequence>
+    </Switch>
+    <Assign sap:VirtualizedContainerService.HintSize="2271,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Double">[userGst]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Double">[userAmount*userPercent]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="2271,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Double">[final]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Double">[userAmount-userGst]</InArgument>
+      </Assign.Value>
+    </Assign>
+  </Sequence>
+</Activity>
